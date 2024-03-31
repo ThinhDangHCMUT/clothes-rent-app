@@ -1,5 +1,9 @@
 html,body{overflow-x:hidden !important}
 
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 // imports styles
 @import './partials/variables.scss';
 @import './partials/breakpoints.scss';
