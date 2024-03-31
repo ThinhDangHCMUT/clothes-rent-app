@@ -1,7 +1,14 @@
-const path = require('path')
+const path = require("path");
 
 module.exports = {
-  sassOptions: {
-    includePaths: [path.join(__dirname, 'styles')],
+  compilerOptions: {
+    baseUrl: "./",
+    paths: {
+      "@/*": ["./*"],
+    },
   },
-}
+  sassOptions: {
+    includePaths: [path.join(__dirname, "styles")],
+  },
+  include: ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+};
