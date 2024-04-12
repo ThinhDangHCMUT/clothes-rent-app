@@ -17,7 +17,6 @@ export default function CheckboxInput({
   hidden,
   required = false,
   readonly = false,
-  note,
 }: CheckboxInputProps) {
   const { control } = useFormContext();
 

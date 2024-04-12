@@ -1,9 +1,6 @@
 import clsx from "clsx";
 import { Controller, useFormContext } from "react-hook-form";
-// import { FormItem } from '../../../model/FormItem';
-import { Toogle } from "../../toogle";
 import { FormItem } from "types/form";
-// import FormItemTitle from './FormItemTitle';
 
 interface CheckboxInputProps extends FormItem {
   asChild?: boolean;
@@ -14,10 +11,7 @@ export default function CheckboxInput({
   name,
   title,
   className,
-  hidden,
   required = false,
-  readonly = false,
-  note,
 }: CheckboxInputProps) {
   const { control } = useFormContext();
 
@@ -37,16 +31,17 @@ export default function CheckboxInput({
           required,
         }}
         defaultValue={false}
-        render={({ field }) => (
-          <Toogle
-            {...field}
-            checked={field.value}
-            hidden={hidden}
-            onCheckedChange={(value) => {
-              field.onChange(value);
-            }}
-            disabled={readonly}
-          />
+        render={({}) => (
+          <></>
+          // <Toogle
+          //   {...field}
+          //   checked={field.value}
+          //   hidden={hidden}
+          //   onCheckedChange={(value) => {
+          //     field.onChange(value);
+          //   }}
+          //   disabled={readonly}
+          // />
         )}
       />
     </div>
