@@ -100,7 +100,7 @@ const IndexPage = () => {
           </header>
 
           <ul className="shop-data-items">
-            {WhyChoseMeList.map((_, index) => (
+            {WhyChoseMeList.map((_) => (
               <li>
                 <i className={_.icon}></i>
                 <div className="data-item__content">
