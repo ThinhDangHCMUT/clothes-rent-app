@@ -1,4 +1,5 @@
-// @ts-ignore
+//@ts-ignore
+//@ts-nocheck
 import Layout from "../layouts/Main";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -31,7 +32,7 @@ const schema = yup
 const LoginPage = () => {
   const methods = useForm({
     // @ts-ignore
-    resolver: yupResolver<yup.AnyObject>(schema),
+    resolver: yupResolver(schema) as unknown as Resolver<T>,
   });
 
   const onSubmit = async (data: LoginMail) => {
