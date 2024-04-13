@@ -22,7 +22,7 @@ const ProductsFilter = () => {
   };
 
   const handleSubmitQuery = (data) => {
-    console.log("data:22 ", data);
+    console.log("dataSubmitQuery", data);
   };
 
   return (

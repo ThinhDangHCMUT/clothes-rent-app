@@ -1,62 +1,72 @@
-import Layout from '../layouts/Main';
-import Link from 'next/link';
+import TextInput from "@components/form-ui-kit/TextInput";
+import Layout from "../layouts/Main";
+import Link from "next/link";
+import FormRow from "@components/form-ui-kit/FormRow";
+import Form from "@components/form-ui-kit/Form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import { useForm } from "react-hook-form";
+import CheckboxInput from "@components/form-ui-kit/CheckboxInput";
+import { Button } from "@components/ui/button";
 
-const RegisterPage = () => (
-  <Layout>
-    <section className="form-page">
-      <div className="container">
-        <div className="back-button-section">
-          <Link href="/products">
-            <a><i className="icon-left"></i> Back to store</a>
-          </Link>
+const schema = yup
+  .object({
+    first_name: yup.string().required("First Name is required"),
+    last_name: yup.string().required("Last Name is required"),
+    email: yup
+      .string()
+      .email("Must be a valid email")
+      .required("Email is required"),
+    password: yup
+      .string()
+      .min(8, "Password must be at least 8 characters long")
+      .required("Password is required"),
+  })
+  .required();
+
+const RegisterPage = () => {
+  const methods = useForm({
+    resolver: yupResolver<yup.AnyObject>(schema),
+  });
+  const onSubmit = (data: any) => {
+    console.log(data);
+  };
+  return (
+    <Layout>
+      <section className="form-page mt-2">
+        <div className="container">
+          <div className="form-block">
+            <h2 className="form-block__title">
+              Create an account and discover the benefits
+            </h2>
+
+            <Form methods={methods} onSubmit={onSubmit}>
+              <FormRow className="flex-col">
+                <TextInput name="first_name" title="First Name" required />
+                <TextInput name="last_name" title="Last Name" required />
+                <TextInput name="email" title="Email" />
+                <TextInput
+                  name="password"
+                  title="Password"
+                  required
+                  type="password"
+                />
+                <div className="flex">
+                  <CheckboxInput name="is_confirm" required />
+                </div>
+              </FormRow>
+              <Button
+                className="text-color-black bg-color-orange w-full"
+                type="submit"
+              >
+                Đăng Ký
+              </Button>
+            </Form>
+          </div>
         </div>
+      </section>
+    </Layout>
+  );
+};
 
-        <div className="form-block">
-          <h2 className="form-block__title">Create an account and discover the benefits</h2>
-          <p className="form-block__description">Lorem Ipsum is simply dummy text of the printing 
-          and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s</p>
-          
-          <form className="form">
-            <div className="form__input-row">
-              <input className="form__input" placeholder="First Name" type="text" />
-            </div>
-            
-            <div className="form__input-row">
-              <input className="form__input" placeholder="Last Name" type="text" />
-            </div>
-            
-            <div className="form__input-row">
-              <input className="form__input" placeholder="Email" type="text" />
-            </div>
-            
-            <div className="form__input-row">
-              <input className="form__input" type="Password" placeholder="Password" />
-            </div>
-
-            <div className="form__info">
-              <div className="checkbox-wrapper">
-                <label htmlFor="check-signed-in" className={`checkbox checkbox--sm`}>
-                  <input name="signed-in" type="checkbox" id="check-signed-in" />
-                  <span className="checkbox__check"></span>
-                    <p>I agree to the Google Terms of Service and Privacy Policy</p>
-                </label>
-              </div>
-            </div>
-
-            <button type="button" className="btn btn--rounded btn--yellow btn-submit">Sign up</button>
-
-            <p className="form__signup-link">
-              <Link href="/login">
-                <a href="#">Are you already a member?</a>
-              </Link>
-            </p>
-          </form>
-        </div>
-
-      </div>
-    </section>
-  </Layout>
-)
-  
-export default RegisterPage
-  
+export default RegisterPage;

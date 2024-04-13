@@ -1,79 +1,140 @@
-import Layout from '../layouts/Main';
-import PageIntro from '../components/page-intro';
-import ProductsFeatured from '../components/products-featured';
-import Footer from '../components/footer';
-import Subscribe from '../components/subscribe';
+import Layout from "../layouts/Main";
+import PageIntro from "../components/page-intro";
+import ProductsFeatured from "../components/products-featured";
+import Footer from "../components/footer";
+import Subscribe from "../components/subscribe";
+import { Carousel, CarouselContent, CarouselItem } from "@components/ui/swiper";
+import Autoplay from "embla-carousel-autoplay";
+import { Steps } from "antd";
+
+const CategoryList = [
+  {
+    name: "Sự kiện trang trọng",
+    image: "/images/featured-1.jpg",
+  },
+  {
+    name: "Hoá Trang và Cosplay",
+    image: "/images/featured-2.jpg",
+  },
+  {
+    name: "Chụp Kỷ Yếu",
+    image: "/images/featured-3.jpg",
+  },
+  {
+    name: "Văn Nghệ",
+    image: "/images/featured-3.jpg",
+  },
+  {
+    name: "Halloween",
+    image: "/images/featured-3.jpg",
+  },
+];
+
+const WhyChoseMeList = [
+  {
+    icon: "icon-materials",
+    title: "Đa dạng mẫu mã",
+  },
+  {
+    icon: "icon-cash",
+    title: "Tiết kiệm chi phí",
+  },
+  {
+    icon: "icon-payment",
+    title: 'Không lo "hậu kì"',
+  },
+  {
+    icon: "icon-shipping",
+    title: "Nhanh chóng, đơn giản",
+  },
+];
 
 const IndexPage = () => {
   return (
     <Layout>
       <PageIntro />
 
-      <section className="featured">
+      <div className="section w-full flex justify-center mt-20 flex-col">
+        {" "}
+        <header className="section__intro">
+          <h4>Dịch vụ sản phẩm thịnh hành, độc đáo</h4>
+        </header>
+        <Carousel
+          plugins={[
+            Autoplay({
+              delay: 2000,
+            }),
+          ]}
+          opts={{
+            loop: true,
+            align: "center",
+          }}
+          className="w-full"
+        >
+          <CarouselContent>
+            {CategoryList.map((_, index) => (
+              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                <div
+                  className="p-5 w-full h-96 bg-cover bg-center bg-no-repeat flex flex-col justify-end gap-2"
+                  style={{ backgroundImage: `url(${_.image})` }}
+                >
+                  <h3 className="text-color-white bg-color-black p-2 bg-opacity-25 w-full font-semibold lg:text-3xl text-xl">
+                    {_.name}
+                  </h3>
+                  <a href="#" className="btn btn--rounded w-fit">
+                    Khám phá
+                  </a>
+                </div>
+              </CarouselItem>
+            ))}
+          </CarouselContent>
+          {/* <CarouselPrevious /> */}
+          {/* <CarouselNext /> */}
+        </Carousel>
+      </div>
+
+      <section className="section">
         <div className="container">
-          <article style={{backgroundImage: 'url(/images/featured-1.jpg)'}} className="featured-item featured-item-large">
-            <div className="featured-item__content">
-              <h3>New arrivals are now in!</h3>
-              <a href="#" className="btn btn--rounded">Show Collection</a>
-            </div>
-          </article>
-          
-          <article style={{backgroundImage: 'url(/images/featured-2.jpg)'}} className="featured-item featured-item-small-first">
-            <div className="featured-item__content">
-              <h3>Basic t-shirts $29,99</h3>
-              <a href="#" className="btn btn--rounded">More details</a>
-            </div>
-          </article>
-          
-          <article style={{backgroundImage: 'url(/images/featured-3.jpg)'}} className="featured-item featured-item-small">
-            <div className="featured-item__content">
-              <h3>Sale this summer</h3>
-              <a href="#" className="btn btn--rounded">VIEW ALL</a>
-            </div>
-          </article>
+          <header className="section__intro">
+            <h4>“Tại sao bạn chọn chúng tôi?”</h4>
+          </header>
+
+          <ul className="shop-data-items">
+            {WhyChoseMeList.map((_, index) => (
+              <li>
+                <i className={_.icon}></i>
+                <div className="data-item__content">
+                  <h4>{_.title}</h4>
+                </div>
+              </li>
+            ))}
+          </ul>
         </div>
       </section>
 
       <section className="section">
         <div className="container">
           <header className="section__intro">
-            <h4>Why should you choose us?</h4>
+            <h4>Quy trình cho thuê</h4>
           </header>
-
-          <ul className="shop-data-items">
-            <li>
-              <i className="icon-shipping"></i>
-              <div className="data-item__content">
-                <h4>Free Shipping</h4>
-                <p>All purchases over $199 are eligible for free shipping via USPS First Class Mail.</p>
-              </div>
-            </li>
-            
-            <li>
-              <i className="icon-payment"></i>
-              <div className="data-item__content">
-                <h4>Easy Payments</h4>
-                <p>All payments are processed instantly over a secure payment protocol.</p>
-              </div>
-            </li>
-            
-            <li>
-              <i className="icon-cash"></i>
-              <div className="data-item__content">
-                <h4>Money-Back Guarantee</h4>
-                <p>If an item arrived damaged or you've changed your mind, you can send it
-                back for a full refund.</p>
-              </div>
-            </li>
-            
-            <li>
-              <i className="icon-materials"></i>
-              <div className="data-item__content">
-                <h4>Finest Quality</h4>
-                <p>Designed to last, each of our products has been crafted with the finest materials.</p>
-              </div>
-            </li>
-          </ul>
+          <Steps
+            style={{}}
+            current={3}
+            items={[
+              {
+                title: "Lựa chọn trang phục",
+              },
+              {
+                title: "Thiết lập giao hàng và thanh toán",
+              },
+              {
+                title: "Nhận hàng và thanh toán",
+              },
+              {
+                title: "“Sự kiện ơi, tớ đến đây!”",
+              },
+            ]}
+          />
         </div>
       </section>
 
@@ -81,8 +142,7 @@ const IndexPage = () => {
       <Subscribe />
       <Footer />
     </Layout>
-  )
-}
+  );
+};
 
-
-export default IndexPage
+export default IndexPage;

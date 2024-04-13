@@ -69,7 +69,7 @@ const Header = ({ isErrorPage }: HeaderType) => {
           <a>
             <h1 className="site-logo">
               <Logo />
-              E-Shop
+              Costume Rental Service
             </h1>
           </a>
         </Link>

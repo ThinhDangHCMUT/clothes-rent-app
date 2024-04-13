@@ -16,6 +16,15 @@ module.exports = {
         to: { height: "0" },
       },
     },
+    colors: {
+      "color-orange": "#FBB03B",
+      "color-orange-light": "#FFF3DF",
+      "color-black": "#333333",
+      "color-text": "#868686",
+      "color-white": "#FFFFFF",
+      "color-gray": "#706c61",
+      "color-red": "#FF0000",
+    },
     animation: {
       "accordion-down": "accordion-down 0.2s ease-out",
       "accordion-up": "accordion-up 0.2s ease-out",
