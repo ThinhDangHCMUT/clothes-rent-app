@@ -26,6 +26,7 @@ const schema = yup
 
 const RegisterPage = () => {
   const methods = useForm({
+    //@ts-ignore
     resolver: yupResolver<yup.AnyObject>(schema),
   });
   const onSubmit = (data: any) => {
