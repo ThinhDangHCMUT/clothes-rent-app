@@ -7,7 +7,13 @@ import Footer from "../components/footer";
 import Subscribe from "../components/subscribe";
 import { Carousel, CarouselContent, CarouselItem } from "@components/ui/swiper";
 import Autoplay from "embla-carousel-autoplay";
-import { Card, CardContent, CardHeader, CardTitle } from "@components/ui/card";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@components/ui/card";
 import useDevice from "hooks/useDevice";
 import { useEffect, useState } from "react";
 import {
@@ -29,6 +35,7 @@ import Form from "@components/form-ui-kit/Form";
 import { FISRT_EMAIL, FIRST_VIEW } from "constants/index";
 import FormRow from "@components/form-ui-kit/FormRow";
 import { useToast } from "@components/ui/use-toast";
+import { CircleX } from "lucide-react";
 
 const CategoryList = [
   {
@@ -99,12 +106,17 @@ const IndexPage = () => {
   };
 
   useEffect(() => {
-    if (loadState(FIRST_VIEW) && loadState(FISRT_EMAIL)) {
-      setOpenEmail(false);
-    } else {
+    const timoutEmailPopup = setTimeout(() => {
       setOpenEmail(true);
-      saveState(FIRST_VIEW, true);
-    }
+    }, 1000);
+
+    // if (loadState(FIRST_VIEW) && loadState(FISRT_EMAIL)) {
+    //   setOpenEmail(false);
+    // } else {
+    //   setOpenEmail(true);
+    //   saveState(FIRST_VIEW, true);
+    // }
+    return () => clearTimeout(timoutEmailPopup);
   }, []);
 
   const onSubmit = (data: any) => {
@@ -112,10 +124,6 @@ const IndexPage = () => {
       console.log(data);
       saveState(FISRT_EMAIL, data.email);
       setOpenEmail(false);
-      toast({
-        title: "Cảm ơn bạn đã để lại Email!",
-        description: "Chúng tôi sẽ liên hệ với bạn sớm nhất có thể!",
-      });
     }
   };
 
@@ -126,7 +134,7 @@ const IndexPage = () => {
   const { isMobile } = useDevice();
   return (
     <>
-      <Dialog open={openEmail} onOpenChange={toogleOpenEmail}>
+      {/* <Dialog open={openEmail} onOpenChange={toogleOpenEmail}>
         <DialogContent className="bg-color-white space-y-4">
           <DialogHeader className="!text-center">
             <DialogTitle className="text-2xl">
@@ -149,19 +157,46 @@ const IndexPage = () => {
             <DialogFooter></DialogFooter>
           </Form>
         </DialogContent>
-      </Dialog>
+      </Dialog> */}
       <Layout>
+        {openEmail && (
+          <div className="fixed bottom-0 z-50 p-2 ">
+            <Card className="bg-color-white shadow-2xl">
+              <div className="w-full flex justify-end p-1">
+                <CircleX
+                  className="hover:opacity-70 cursor-pointer"
+                  onClick={toogleOpenEmail}
+                />
+              </div>
+              <CardHeader className="px-3 py-0">
+                <CardTitle className="text-center text-color-black text-xl flex justify-center items-center gap-3">
+                  <p className="">Your Email</p>
+                </CardTitle>
+                <CardDescription>
+                  <p className="text-center text-sm">
+                    Để nhận thông tin mới nhất từ chúng tôi
+                  </p>
+                </CardDescription>
+              </CardHeader>
+              <CardContent className="flex flex-col items-center justify-center p-0">
+                <div className="p-3 h-full flex items-center justify-center w-full font-semibold text-center">
+                  <Form methods={methods} onSubmit={onSubmit}>
+                    <FormRow className="!gap-2">
+                      <TextInput name="email" required />
+                      <Button
+                        type="submit"
+                        className="bg-color-orange text-color-black"
+                      >
+                        Subscribe
+                      </Button>
+                    </FormRow>
+                  </Form>
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        )}
         <PageIntro />
-        <Button
-          onClick={() => {
-            toast({
-              title: "Cảm ơn bạn đã để lại Email!",
-              description: "Chúng tôi sẽ liên hệ với bạn sớm nhất có thể!",
-            });
-          }}
-        >
-          hello
-        </Button>
 
         <div className="section w-full flex justify-center mt-20 flex-col">
           {" "}

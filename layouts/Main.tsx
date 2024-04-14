@@ -12,7 +12,7 @@ export default ({ children, title = "Costume Rental Service" }: LayoutType) => {
   const pathname = router.pathname;
 
   return (
-    <div className="app-main">
+    <div className="app-main relative">
       <Head>
         <title>{title}</title>
       </Head>
