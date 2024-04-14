@@ -44,48 +44,42 @@ const Footer = () => {
 
           <div className="site-footer__links">
             <ul>
-              <li>Shopping online</li>
+              <li>Dành cho bạn</li>
               <li>
-                <a href="#">Order Status</a>
+                <a href="/products">Sản phẩm</a>
               </li>
               <li>
-                <a href="#">Shipping and Delivery</a>
+                <a href="#">Trạng thái mua hàng</a>
               </li>
               <li>
-                <a href="#">Returns</a>
+                <a href="#">Giao hàng</a>
               </li>
               <li>
-                <a href="#">Payment options</a>
-              </li>
-              <li>
-                <a href="#">Contact Us</a>
+                <a href="#">Vận chuyển</a>
               </li>
             </ul>
             <ul>
-              <li>Information</li>
+              <li>Thông tin</li>
               <li>
-                <a href="#">Gift Cards</a>
+                <a href="#">Mã Khuyến mãi</a>
               </li>
               <li>
-                <a href="#">Find a store</a>
+                <a href="#">Tin tức</a>
               </li>
               <li>
-                <a href="#">Newsletter</a>
-              </li>
-              <li>
-                <a href="#">Bacome a member</a>
-              </li>
-              <li>
-                <a href="#">Site feedback</a>
+                <a href="#">Về chúng tôi</a>
               </li>
             </ul>
             <ul>
-              <li>Contact</li>
+              <li>Hỗ trợ</li>
               <li>
-                <a href="#">store@uikit.com</a>
+                <a href="#">Chính sách điều khoản</a>
               </li>
               <li>
-                <a href="#">Hotline: +1 131 138 138</a>
+                <a href="#">Chính sách bảo mật </a>
+              </li>
+              <li>
+                <a href="#">Liên hệ </a>
               </li>
             </ul>
           </div>
@@ -94,7 +88,7 @@ const Footer = () => {
 
       <div className="site-footer__bottom">
         <div className="container">
-          <p>DESIGN BY ICEO.CO - © 2019. ALL RIGHTS RESERVED.</p>
+          <p>DESIGN BY CYBERITY. ALL RIGHTS RESERVED.</p>
         </div>
       </div>
     </footer>

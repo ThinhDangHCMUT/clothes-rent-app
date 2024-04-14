@@ -1,3 +1,5 @@
+"use client";
+
 import Layout from "../layouts/Main";
 import PageIntro from "../components/page-intro";
 import ProductsFeatured from "../components/products-featured";
@@ -5,9 +7,28 @@ import Footer from "../components/footer";
 import Subscribe from "../components/subscribe";
 import { Carousel, CarouselContent, CarouselItem } from "@components/ui/swiper";
 import Autoplay from "embla-carousel-autoplay";
-import { Steps } from "antd";
 import { Card, CardContent, CardHeader, CardTitle } from "@components/ui/card";
 import useDevice from "hooks/useDevice";
+import { useEffect, useState } from "react";
+import {
+  Dialog,
+  DialogContent,
+  DialogDescription,
+  DialogFooter,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from "@components/ui/dialog";
+import { Button } from "@components/ui/button";
+import { loadState, saveState } from "@utils/localstorage";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+import TextInput from "@components/form-ui-kit/TextInput";
+import { useForm } from "react-hook-form";
+import Form from "@components/form-ui-kit/Form";
+import { FISRT_EMAIL, FIRST_VIEW } from "constants/index";
+import FormRow from "@components/form-ui-kit/FormRow";
+import { useToast } from "@components/ui/use-toast";
 
 const CategoryList = [
   {
@@ -61,102 +82,117 @@ const StepsList = [
   { header: "Bước 4", title: "“Sự kiện ơi, tớ đến đây!”" },
 ];
 
+const schema = yup
+  .object({
+    email: yup
+      .string()
+      .email("Must be a valid email")
+      .required("Email is required"),
+  })
+  .required();
+
 const IndexPage = () => {
+  const [openEmail, setOpenEmail] = useState(false);
+  const { toast } = useToast();
+  const toogleOpenEmail = () => {
+    setOpenEmail((item) => !item);
+  };
+
+  useEffect(() => {
+    if (loadState(FIRST_VIEW) && loadState(FISRT_EMAIL)) {
+      setOpenEmail(false);
+    } else {
+      setOpenEmail(true);
+      saveState(FIRST_VIEW, true);
+    }
+  }, []);
+
+  const onSubmit = (data: any) => {
+    if (data) {
+      console.log(data);
+      saveState(FISRT_EMAIL, data.email);
+      setOpenEmail(false);
+      toast({
+        title: "Cảm ơn bạn đã để lại Email!",
+        description: "Chúng tôi sẽ liên hệ với bạn sớm nhất có thể!",
+      });
+    }
+  };
+
+  const methods = useForm({
+    resolver: yupResolver(schema) as any,
+  });
+
   const { isMobile } = useDevice();
   return (
-    <Layout>
-      <PageIntro />
-
-      <div className="section w-full flex justify-center mt-20 flex-col">
-        {" "}
-        <header className="section__intro">
-          <h4>Dịch vụ sản phẩm thịnh hành, độc đáo</h4>
-        </header>
-        <Carousel
-          plugins={[
-            Autoplay({
-              delay: 2000,
-            }),
-          ]}
-          opts={{
-            loop: true,
-            align: "center",
+    <>
+      <Dialog open={openEmail} onOpenChange={toogleOpenEmail}>
+        <DialogContent className="bg-color-white space-y-4">
+          <DialogHeader className="!text-center">
+            <DialogTitle className="text-2xl">
+              Welcome to my Service!
+            </DialogTitle>
+            <DialogDescription>
+              Hãy để lại Email để chúng tôi có thể hỗ trợ bạn tốt hơn!
+            </DialogDescription>
+          </DialogHeader>
+          <Form methods={methods} onSubmit={onSubmit} className="space-y-3">
+            <FormRow>
+              <TextInput name="email" required />
+              <Button
+                type="submit"
+                className="bg-color-orange text-color-black"
+              >
+                Nhập
+              </Button>
+            </FormRow>
+            <DialogFooter></DialogFooter>
+          </Form>
+        </DialogContent>
+      </Dialog>
+      <Layout>
+        <PageIntro />
+        <Button
+          onClick={() => {
+            toast({
+              title: "Cảm ơn bạn đã để lại Email!",
+              description: "Chúng tôi sẽ liên hệ với bạn sớm nhất có thể!",
+            });
           }}
-          className="w-full"
         >
-          <CarouselContent>
-            {CategoryList.map((_, index) => (
-              <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
-                <div
-                  className="p-5 w-full h-96 bg-cover bg-center bg-no-repeat flex flex-col justify-end gap-2"
-                  style={{ backgroundImage: `url(${_.image})` }}
-                >
-                  <h3 className="text-color-white bg-color-black p-2 bg-opacity-25 w-full font-semibold lg:text-3xl text-xl">
-                    {_.name}
-                  </h3>
-                  <a href="#" className="btn btn--rounded w-fit">
-                    Khám phá
-                  </a>
-                </div>
-              </CarouselItem>
-            ))}
-          </CarouselContent>
-          {/* <CarouselPrevious /> */}
-          {/* <CarouselNext /> */}
-        </Carousel>
-      </div>
+          hello
+        </Button>
 
-      <section className="section">
-        <div className="container">
+        <div className="section w-full flex justify-center mt-20 flex-col">
+          {" "}
           <header className="section__intro">
-            <h4>“Tại sao bạn chọn chúng tôi?”</h4>
-          </header>
-
-          <ul className="shop-data-items">
-            {WhyChoseMeList.map((_) => (
-              <li>
-                <i className={_.icon}></i>
-                <div className="data-item__content">
-                  <h4>{_.title}</h4>
-                </div>
-              </li>
-            ))}
-          </ul>
-        </div>
-      </section>
-
-      <section className="section">
-        <div className="container">
-          <header className="section__intro">
-            <h4>Quy trình cho thuê</h4>
+            <h4>Dịch vụ sản phẩm thịnh hành, độc đáo</h4>
           </header>
           <Carousel
-            className="w-full"
-            opts={{ align: "center", loop: true }}
             plugins={[
               Autoplay({
                 delay: 2000,
-                playOnInit: true,
               }),
             ]}
-            orientation={isMobile ? "vertical" : "horizontal"}
+            opts={{
+              loop: true,
+              align: "center",
+            }}
+            className="w-full"
           >
             <CarouselContent>
-              {[...StepsList].map((_, index) => (
-                <CarouselItem key={index} className="md:basis-1/3">
-                  <div className="p-1">
-                    <Card>
-                      <CardHeader>
-                        <CardTitle className="text-center text-color-black text-xl">
-                          {_.header}
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="flex flex-col h-28 items-center justify-center p-0">
-                        <div className="bg-color-orange bg-opacity-15 p-3 h-full flex items-center justify-center w-full font-semibold text-center">
-                          <p className="">{_.title}</p>
-                        </div>
-                      </CardContent>
-                    </Card>
+              {CategoryList.map((_, index) => (
+                <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
+                  <div
+                    className="p-5 w-full h-96 bg-cover bg-center bg-no-repeat flex flex-col justify-end gap-2"
+                    style={{ backgroundImage: `url(${_.image})` }}
+                  >
+                    <h3 className="text-color-white bg-color-black p-2 bg-opacity-25 w-full font-semibold lg:text-3xl text-xl">
+                      {_.name}
+                    </h3>
+                    <a href="#" className="btn btn--rounded w-fit">
+                      Khám phá
+                    </a>
                   </div>
                 </CarouselItem>
               ))}
@@ -165,12 +201,73 @@ const IndexPage = () => {
             {/* <CarouselNext /> */}
           </Carousel>
         </div>
-      </section>
 
-      <ProductsFeatured />
-      <Subscribe />
-      <Footer />
-    </Layout>
+        <section className="section">
+          <div className="container">
+            <header className="section__intro">
+              <h4>“Tại sao bạn chọn chúng tôi?”</h4>
+            </header>
+
+            <ul className="shop-data-items">
+              {WhyChoseMeList.map((_) => (
+                <li>
+                  <i className={_.icon}></i>
+                  <div className="data-item__content">
+                    <h4>{_.title}</h4>
+                  </div>
+                </li>
+              ))}
+            </ul>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="container">
+            <header className="section__intro">
+              <h4>Quy trình cho thuê</h4>
+            </header>
+            <Carousel
+              className="w-full"
+              opts={{ align: "center", loop: true }}
+              plugins={[
+                Autoplay({
+                  delay: 2000,
+                  playOnInit: true,
+                }),
+              ]}
+              orientation={isMobile ? "vertical" : "horizontal"}
+            >
+              <CarouselContent>
+                {[...StepsList].map((_, index) => (
+                  <CarouselItem key={index} className="basis-1/4">
+                    <div className="p-1">
+                      <Card>
+                        <CardHeader>
+                          <CardTitle className="text-center text-color-black text-xl">
+                            {_.header}
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent className="flex flex-col h-28 items-center justify-center p-0">
+                          <div className="bg-color-orange bg-opacity-15 p-3 h-full flex items-center justify-center w-full font-semibold text-center">
+                            <p className="">{_.title}</p>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              {/* <CarouselPrevious /> */}
+              {/* <CarouselNext /> */}
+            </Carousel>
+          </div>
+        </section>
+
+        <ProductsFeatured />
+        <Subscribe />
+        <Footer />
+      </Layout>
+    </>
   );
 };
 
