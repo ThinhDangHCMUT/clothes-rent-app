@@ -7,6 +7,7 @@ import { useRouter } from "next/router";
 import { RootState } from "store";
 import { FilterType, setFilter } from "store/reducers/filter";
 import _ from "lodash";
+import clsx from "clsx";
 
 type HeaderType = {
   isErrorPage?: Boolean;
@@ -32,7 +33,8 @@ const Header = ({ isErrorPage }: HeaderType) => {
   const searchRef = useRef(null);
 
   const headerClass = () => {
-    if (window.pageYOffset === 0) {
+    if (window.scrollY === 0) {
+      console.log("window.scrollY: ", window.scrollY);
       setOnTop(true);
     } else {
       setOnTop(false);
@@ -63,7 +65,7 @@ const Header = ({ isErrorPage }: HeaderType) => {
   useOnClickOutside(searchRef, closeSearch);
 
   return (
-    <header className={`site-header ${!onTop ? "site-header--fixed" : ""}`}>
+    <header className={clsx("site-header", !onTop ? "site-header--fixed" : "")}>
       <div className="container">
         <Link href="/">
           <a>
@@ -78,10 +80,10 @@ const Header = ({ isErrorPage }: HeaderType) => {
           className={`site-nav ${menuOpen ? "site-nav--open" : ""}`}
         >
           <Link href="/products">
-            <a>Products</a>
+            <a>Sản phẩm</a>
           </Link>
-          <a href="#">Inspiration</a>
-          <a href="#">Rooms</a>
+          <a href="#">Tin tức</a>
+          <a href="#">Về chúng tôi</a>
           <button className="site-nav__btn">
             <p>Account</p>
           </button>

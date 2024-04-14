@@ -49,6 +49,21 @@ const WhyChoseMeList = [
   },
 ];
 
+const StepsList = [
+  {
+    title: "Lựa chọn trang phục",
+  },
+  {
+    title: "Thiết lập giao hàng và thanh toán",
+  },
+  {
+    title: "Nhận hàng và thanh toán",
+  },
+  {
+    title: "“Sự kiện ơi, tớ đến đây!”",
+  },
+];
+
 const IndexPage = () => {
   return (
     <Layout>
@@ -117,24 +132,7 @@ const IndexPage = () => {
           <header className="section__intro">
             <h4>Quy trình cho thuê</h4>
           </header>
-          <Steps
-            style={{}}
-            current={3}
-            items={[
-              {
-                title: "Lựa chọn trang phục",
-              },
-              {
-                title: "Thiết lập giao hàng và thanh toán",
-              },
-              {
-                title: "Nhận hàng và thanh toán",
-              },
-              {
-                title: "“Sự kiện ơi, tớ đến đây!”",
-              },
-            ]}
-          />
+          <Steps current={3} items={StepsList}></Steps>
         </div>
       </section>
 

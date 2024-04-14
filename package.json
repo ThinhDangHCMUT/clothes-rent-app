@@ -21,7 +21,7 @@
     "@radix-ui/react-slot": "^1.0.2",
     "@radix-ui/react-toggle": "^1.0.3",
     "@reduxjs/toolkit": "^1.8.1",
-    "antd": "4.24.3",
+    "antd": "4.24.16",
     "autoprefixer": "^10.4.19",
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.0",

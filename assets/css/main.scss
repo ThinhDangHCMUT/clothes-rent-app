@@ -9,12 +9,12 @@ html,body{overflow-x:hidden !important}
 @import './partials/breakpoints.scss';
 @import './partials/reset.css';
 
+
 .ant-steps-item-icon, .ant-steps-icon{
   background-color: var(--color-orange-light) !important;
-  border-radius: var(--color-orange) !important;
   color: var(--color-black) !important;
   border-color: var(--color-black) !important;
-  border-radius: 50% !important;
+  border-radius: 100% !important;
 }
 .ant-steps-item-title::after{
   background-color: var(--color-black) !important;
