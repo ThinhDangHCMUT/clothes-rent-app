@@ -79,6 +79,12 @@ const Footer = () => {
                 <a href="#">Chính sách bảo mật </a>
               </li>
               <li>
+                <a href="#">Chính sách trả hàng</a>
+              </li>
+              <li>
+                <a href="#">Chính sách hư hỏng</a>
+              </li>
+              <li>
                 <a href="#">Liên hệ </a>
               </li>
             </ul>
