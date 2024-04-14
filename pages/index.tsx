@@ -6,6 +6,8 @@ import Subscribe from "../components/subscribe";
 import { Carousel, CarouselContent, CarouselItem } from "@components/ui/swiper";
 import Autoplay from "embla-carousel-autoplay";
 import { Steps } from "antd";
+import { Card, CardContent, CardHeader, CardTitle } from "@components/ui/card";
+import useDevice from "hooks/useDevice";
 
 const CategoryList = [
   {
@@ -51,20 +53,16 @@ const WhyChoseMeList = [
 
 const StepsList = [
   {
+    header: "Bước 1",
     title: "Lựa chọn trang phục",
   },
-  {
-    title: "Thiết lập giao hàng và thanh toán",
-  },
-  {
-    title: "Nhận hàng và thanh toán",
-  },
-  {
-    title: "“Sự kiện ơi, tớ đến đây!”",
-  },
+  { header: "Bước 2", title: "Thiết lập giao hàng và thanh toán" },
+  { header: "Bước 3", title: "Nhận hàng và thanh toán" },
+  { header: "Bước 4", title: "“Sự kiện ơi, tớ đến đây!”" },
 ];
 
 const IndexPage = () => {
+  const { isMobile } = useDevice();
   return (
     <Layout>
       <PageIntro />
@@ -132,7 +130,40 @@ const IndexPage = () => {
           <header className="section__intro">
             <h4>Quy trình cho thuê</h4>
           </header>
-          <Steps current={3} items={StepsList}></Steps>
+          <Carousel
+            className="w-full"
+            opts={{ align: "center", loop: true }}
+            plugins={[
+              Autoplay({
+                delay: 2000,
+                playOnInit: true,
+              }),
+            ]}
+            orientation={isMobile ? "vertical" : "horizontal"}
+          >
+            <CarouselContent>
+              {[...StepsList].map((_, index) => (
+                <CarouselItem key={index} className="md:basis-1/3">
+                  <div className="p-1">
+                    <Card>
+                      <CardHeader>
+                        <CardTitle className="text-center text-color-black text-xl">
+                          {_.header}
+                        </CardTitle>
+                      </CardHeader>
+                      <CardContent className="flex flex-col h-28 items-center justify-center p-0">
+                        <div className="bg-color-orange bg-opacity-15 p-3 h-full flex items-center justify-center w-full font-semibold text-center">
+                          <p className="">{_.title}</p>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </div>
+                </CarouselItem>
+              ))}
+            </CarouselContent>
+            {/* <CarouselPrevious /> */}
+            {/* <CarouselNext /> */}
+          </Carousel>
         </div>
       </section>
 

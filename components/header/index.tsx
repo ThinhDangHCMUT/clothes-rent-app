@@ -8,6 +8,7 @@ import { RootState } from "store";
 import { FilterType, setFilter } from "store/reducers/filter";
 import _ from "lodash";
 import clsx from "clsx";
+import { Button } from "@components/ui/button";
 
 type HeaderType = {
   isErrorPage?: Boolean;
@@ -71,7 +72,7 @@ const Header = ({ isErrorPage }: HeaderType) => {
           <a>
             <h1 className="site-logo">
               <Logo />
-              Costume Rental Service
+              <p className="lg:block hidden">Costume Rental Service</p>
             </h1>
           </a>
         </Link>
@@ -128,9 +129,15 @@ const Header = ({ isErrorPage }: HeaderType) => {
             </button>
           </Link>
           <Link href="/login">
-            <button className="site-header__btn-avatar">
-              <i className="icon-avatar"></i>
-            </button>
+            <Button className="">Đăng nhập</Button>
+          </Link>
+          <Link href="/register">
+            <Button
+              variant="secondary"
+              className="bg-color-orange lg:block hidden"
+            >
+              Đăng kí
+            </Button>
           </Link>
           <button
             onClick={() => setMenuOpen(true)}
