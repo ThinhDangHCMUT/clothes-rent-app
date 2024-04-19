@@ -10,6 +10,13 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { FcGoogle } from "react-icons/fc";
 import { Button } from "@components/ui/button";
+import { signInGoogle } from "@utils/auth";
+import { USER_INFO } from "constants";
+import { saveState } from "@utils/localstorage";
+import { useToast } from "@components/ui/use-toast";
+import { ToastAction } from "@components/ui/toast";
+import { useRouter } from "next/router";
+import { UserData } from "types";
 
 type LoginMail = {
   email: string;
@@ -30,6 +37,9 @@ const schema = yup
   .required();
 
 const LoginPage = () => {
+  const { toast } = useToast();
+  const router = useRouter();
+
   const methods = useForm({
     // @ts-ignore
     resolver: yupResolver(schema) as unknown as Resolver<T>,
@@ -42,6 +52,28 @@ const LoginPage = () => {
     //   email: data.email,
     //   password: data.password,
     // });
+  };
+
+  const handleLoginByGoogle = async () => {
+    try {
+      const response = await signInGoogle();
+      saveState(USER_INFO, response.data as UserData);
+      toast({
+        variant: "success",
+        title: "Success",
+        description: "Login successfully",
+      });
+      router.push("/");
+    } catch (err) {
+      console.log("err: ", err);
+      toast({
+        variant: "destructive",
+        title: "Uh oh! Something went wrong.",
+        description: "There was a problem with your request.",
+        action: <ToastAction altText="Try again">Try again</ToastAction>,
+      });
+    } finally {
+    }
   };
 
   return (
@@ -74,6 +106,7 @@ const LoginPage = () => {
                   Login
                 </Button>
                 <Button
+                  onClick={handleLoginByGoogle}
                   type="button"
                   className="ring-1 !ring-color-black w-full bg-white text-black ring-slate-500 space-x-2"
                 >

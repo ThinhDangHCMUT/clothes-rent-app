@@ -63,3 +63,14 @@ export enum InputTypeEnum {
   INTEGER = "integer",
   FLOAT = "float",
 }
+
+export interface UserData {
+  id: string;
+  userName: string;
+  avatar: string;
+  email: string;
+  exp: number;
+  emailVerified: boolean;
+  accessToken: string;
+  refreshToken: string;
+}

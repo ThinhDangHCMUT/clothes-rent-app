@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import useOnClickOutside from "use-onclickoutside";
@@ -9,6 +11,11 @@ import { FilterType, setFilter } from "store/reducers/filter";
 import _ from "lodash";
 import clsx from "clsx";
 import { Button } from "@components/ui/button";
+import { loadState } from "@utils/localstorage";
+import { USER_INFO } from "constants/index";
+import { Avatar, AvatarFallback, AvatarImage } from "@components/ui/avatar";
+import { LogOutIcon } from "lucide-react";
+import { signOutFirebase } from "@utils/auth";
 
 type HeaderType = {
   isErrorPage?: Boolean;
@@ -20,6 +27,9 @@ const Header = ({ isErrorPage }: HeaderType) => {
   }, 300);
   const router = useRouter();
   const { cartItems } = useSelector((state: RootState) => state.cart);
+
+  const userInfo = loadState(USER_INFO);
+  console.log("userInfo: ", userInfo);
 
   const arrayPaths = ["/"];
 
@@ -128,17 +138,36 @@ const Header = ({ isErrorPage }: HeaderType) => {
               )}
             </button>
           </Link>
-          <Link href="/login">
-            <Button className="">Đăng nhập</Button>
-          </Link>
-          <Link href="/register">
-            <Button
-              variant="secondary"
-              className="bg-color-orange lg:block hidden"
-            >
-              Đăng kí
-            </Button>
-          </Link>
+          {userInfo ? (
+            <div className="ml-5 flex items-center gap-2">
+              <Avatar>
+                <AvatarImage src={userInfo.avatar} />
+                <AvatarFallback>CN</AvatarFallback>
+              </Avatar>
+              <LogOutIcon
+                className="hover:opacity-70 cursor-pointer"
+                onClick={async () => {
+                  localStorage.removeItem(USER_INFO);
+                  await signOutFirebase();
+                  router.push("/login");
+                }}
+              />
+            </div>
+          ) : (
+            <>
+              <Link href="/login">
+                <Button className="">Đăng nhập</Button>
+              </Link>
+              <Link href="/register">
+                <Button
+                  variant="secondary"
+                  className="bg-color-orange lg:block hidden"
+                >
+                  Đăng kí
+                </Button>
+              </Link>
+            </>
+          )}
           <button
             onClick={() => setMenuOpen(true)}
             className="site-header__btn-menu"

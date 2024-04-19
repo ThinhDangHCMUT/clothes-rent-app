@@ -1,5 +1,4 @@
 "use client";
-
 import Layout from "../layouts/Main";
 import PageIntro from "../components/page-intro";
 import ProductsFeatured from "../components/products-featured";
@@ -16,23 +15,14 @@ import {
 } from "@components/ui/card";
 import useDevice from "hooks/useDevice";
 import { useEffect, useState } from "react";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogTitle,
-  DialogTrigger,
-} from "@components/ui/dialog";
 import { Button } from "@components/ui/button";
-import { loadState, saveState } from "@utils/localstorage";
+import { saveState } from "@utils/localstorage";
 import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import TextInput from "@components/form-ui-kit/TextInput";
 import { useForm } from "react-hook-form";
 import Form from "@components/form-ui-kit/Form";
-import { FISRT_EMAIL, FIRST_VIEW } from "constants/index";
+import { FISRT_EMAIL } from "constants/index";
 import FormRow from "@components/form-ui-kit/FormRow";
 import { useToast } from "@components/ui/use-toast";
 import { CircleX } from "lucide-react";
@@ -124,6 +114,11 @@ const IndexPage = () => {
       console.log(data);
       saveState(FISRT_EMAIL, data.email);
       setOpenEmail(false);
+      toast({
+        title: "Success",
+        description: "Thanks for leaving your email! We will contact you soon!",
+        duration: 1000000,
+      });
     }
   };
 
