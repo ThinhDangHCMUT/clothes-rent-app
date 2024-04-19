@@ -16,6 +16,7 @@ import { USER_INFO } from "constants/index";
 import { Avatar, AvatarFallback, AvatarImage } from "@components/ui/avatar";
 import { LogOutIcon } from "lucide-react";
 import { signOutFirebase } from "@utils/auth";
+import { twMerge } from "tailwind-merge";
 
 type HeaderType = {
   isErrorPage?: Boolean;
@@ -139,7 +140,12 @@ const Header = ({ isErrorPage }: HeaderType) => {
             </button>
           </Link>
           {userInfo ? (
-            <div className="ml-5 flex items-center gap-2">
+            <div
+              className={twMerge(
+                "ml-5 flex items-center gap-2",
+                !onTop && "text-color-black"
+              )}
+            >
               <Avatar>
                 <AvatarImage src={userInfo.avatar} />
                 <AvatarFallback>CN</AvatarFallback>

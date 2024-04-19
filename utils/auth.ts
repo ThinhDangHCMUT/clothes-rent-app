@@ -117,41 +117,41 @@ export const signInFacebook = async () => {
   }
 };
 
-// export const signUpEmailPassword = async (email: string, password: string) => {
-//   let response: AuthResponse = {
-//     errorCode: "",
-//     data: null,
-//   };
-//   try {
-//     const createResponse = await createUserWithEmailAndPassword(
-//       FireBaseAuth,
-//       email,
-//       password
-//     );
-//     sendEmailVerification(createResponse.user, actionCodeSettings as any)
-//       .then(() => {
-//         console.log("Success");
-//       })
-//       .catch((err) => {
-//         console.log("err: ", err);
-//       });
+export const signUpEmailPassword = async (email: string, password: string) => {
+  let response: AuthResponse = {
+    errorCode: "",
+    data: null,
+  };
+  try {
+    const createResponse = await createUserWithEmailAndPassword(
+      FireBaseAuth,
+      email,
+      password
+    );
+    // sendEmailVerification(createResponse.user, actionCodeSettings as any)
+    //   .then(() => {
+    //     console.log("Success");
+    //   })
+    //   .catch((err) => {
+    //     console.log("err: ", err);
+    //   });
 
-//     response = {
-//       errorCode: "",
-//       data: createResponse.user,
-//     };
+    response = {
+      errorCode: "",
+      data: createResponse.user,
+    };
 
-//     return response;
-//   } catch (err: any) {
-//     const errorCode = translateErrorCode(err.code);
+    return response;
+  } catch (err: any) {
+    const errorCode = translateErrorCode(err.code);
 
-//     response = {
-//       errorCode,
-//       data: null,
-//     };
-//     return response;
-//   }
-// };
+    response = {
+      errorCode,
+      data: null,
+    };
+    return response;
+  }
+};
 
 export const translateErrorCode = (errorCode: string): string => {
   switch (errorCode) {

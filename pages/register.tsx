@@ -9,6 +9,9 @@ import * as yup from "yup";
 import { useForm } from "react-hook-form";
 import CheckboxInput from "@components/form-ui-kit/CheckboxInput";
 import { Button } from "@components/ui/button";
+import { signUpEmailPassword } from "@utils/auth";
+import { useToast } from "@components/ui/use-toast";
+import { useRouter } from "next/router";
 
 const schema = yup
   .object({
@@ -26,11 +29,31 @@ const schema = yup
   .required();
 
 const RegisterPage = () => {
+  const { toast } = useToast();
+  const router = useRouter();
   const methods = useForm({
     resolver: yupResolver<yup.AnyObject>(schema) as unknown as Resolver<T>,
   });
-  const onSubmit = (data: any) => {
-    console.log(data);
+  const onSubmit = async (data: any) => {
+    const response = await signUpEmailPassword(data.email, data.password);
+    if (response.errorCode) {
+      console.log("error: ", response.errorCode);
+      toast({
+        title: "Error",
+        description: response.errorCode,
+      });
+      return;
+    }
+    toast({
+      title: "Sign up Success",
+      description: `${response.data.email} was successfully signed`,
+    });
+    router.push({
+      pathname: "/login",
+      query: {
+        email: response.data.email,
+      },
+    });
   };
   return (
     <Layout>

@@ -1,5 +1,7 @@
 //@ts-ignore
 //@ts-nocheck
+"use client";
+
 import Layout from "../layouts/Main";
 import Link from "next/link";
 import { useForm } from "react-hook-form";
@@ -10,13 +12,15 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 import { FcGoogle } from "react-icons/fc";
 import { Button } from "@components/ui/button";
-import { signInGoogle } from "@utils/auth";
+import { signInEmailPassword, signInGoogle } from "@utils/auth";
 import { USER_INFO } from "constants";
 import { saveState } from "@utils/localstorage";
 import { useToast } from "@components/ui/use-toast";
 import { ToastAction } from "@components/ui/toast";
 import { useRouter } from "next/router";
+import { useParams } from "next/navigation";
 import { UserData } from "types";
+import { useEffect } from "react";
 
 type LoginMail = {
   email: string;
@@ -38,6 +42,7 @@ const schema = yup
 
 const LoginPage = () => {
   const { toast } = useToast();
+  // const params = useSear();
   const router = useRouter();
 
   const methods = useForm({
@@ -45,19 +50,39 @@ const LoginPage = () => {
     resolver: yupResolver(schema) as unknown as Resolver<T>,
   });
 
-  const onSubmit = async (data: LoginMail) => {
-    console.log("data: ", data);
+  useEffect(() => {
+    if (router.email) {
+      methods.setValue("email", router.email);
+    }
+  }, [router]);
 
-    // const res = await postData(`${server}/api/login`, {
-    //   email: data.email,
-    //   password: data.password,
-    // });
+  const onSubmit = async (data: LoginMail) => {
+    const response = await signInEmailPassword(data.email, data.password);
+    console.log("response: ", response);
+
+    if (response.errorCode) {
+      toast({
+        title: "Error",
+        description: response.errorCode,
+      });
+      return;
+    }
+    saveState(USER_INFO, response.data as UserData);
+    toast({
+      variant: "success",
+      title: "Success",
+      description: "Login successfully",
+    });
+    router.push("/");
   };
 
   const handleLoginByGoogle = async () => {
     try {
       const response = await signInGoogle();
       saveState(USER_INFO, response.data as UserData);
+      if (response.errorCode) {
+        throw new Error(response.errorCode);
+      }
       toast({
         variant: "success",
         title: "Success",
