@@ -29,23 +29,19 @@ import { CircleX } from "lucide-react";
 
 const CategoryList = [
   {
-    name: "Sự kiện trang trọng",
+    name: "Vest, sơ mi nam",
     image: "/images/featured-1.jpg",
   },
   {
-    name: "Hoá Trang và Cosplay",
+    name: "Đầm dạ hội nữ",
     image: "/images/featured-2.jpg",
   },
   {
-    name: "Chụp Kỷ Yếu",
+    name: "Áo dài",
     image: "/images/featured-3.jpg",
   },
   {
-    name: "Văn Nghệ",
-    image: "/images/featured-3.jpg",
-  },
-  {
-    name: "Halloween",
+    name: "Trang phục Tót nghiệp",
     image: "/images/featured-3.jpg",
   },
 ];
