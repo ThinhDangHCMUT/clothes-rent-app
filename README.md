@@ -22,7 +22,7 @@ ZLP_MERCHANT_APP_ID: '2554',
 ZLP_MERCHANT_KEY1: 'sdngKKJmqEMzvh5QQcdD2A9XBSKUNaYn',
 ZLP_MERCHANT_KEY2: 'trMrHtvjo6myautxDUiAcYsVtaeQ8nhf',
 ZLP_MERCHANT_ENDPOINT: 'https://sb-openapi.zalopay.vn/v2/',
-ZLP_MERCHANT_CALLBACK_URL:'ngrok http 3000' + /api/callback
+ZLP_MERCHANT_CALLBACK_URL:'ngrok http 3000/api/callback'
 ```
 
 ## Install ngrok
@@ -66,7 +66,7 @@ yarn install
 Run dev
 
 ```
-yarn start
+yarn dev
 ```
 
 Your app is running at: http://localhost:3000
