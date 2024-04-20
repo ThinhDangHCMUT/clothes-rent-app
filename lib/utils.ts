@@ -1,14 +1,14 @@
-import axios from 'axios';
-import confetti from 'canvas-confetti';
+import axios from "axios";
+import confetti from "canvas-confetti";
 
-export const formatCurrency = (amount = 0, currency = 'VND') =>
-  new Intl.NumberFormat('en-US', {
-    style: 'currency',
+export const formatCurrency = (amount = 0, currency = "VND") =>
+  new Intl.NumberFormat("en-US", {
+    style: "currency",
     currency,
     minimumIntegerDigits: 2,
   }).format(amount / 100);
 
-export const isClient = typeof window === 'object';
+export const isClient = typeof window === "object";
 
 export const fetcher = (url) => axios.get(url).then((res) => res.data);
 
