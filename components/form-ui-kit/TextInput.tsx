@@ -61,7 +61,7 @@ export default function TextInput({
           <Input
             {...field}
             className={cn(
-              "w-full border-red outline-emerald-100 ring-color-gray",
+              "w-full border-red outline-emerald-100 ring-color-gray rounded-none",
               errorMessage && "ring-color-red"
             )}
             placeholder={placeholder}

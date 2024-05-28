@@ -7,11 +7,15 @@ const Footer = () => {
         <div className="site-footer__top">
           <div className="site-footer__description">
             <h6>
-              <Logo /> Costume Rental Service
+              <img
+                src="https://i.ibb.co/JmLjZ2R/439581460-1254376502638315-3938044933412619131-n-removebg-preview.png"
+                className="md:h-12 h-8"
+                alt=""
+              />
             </h6>
             <p>
-              House My Brand designs clothing for the young, the old & everyone
-              in between – but most importantly, for the fashionable
+              Dịch vụ cho thuê trang phục theo sự kiện với nhiều mẫu mã đa dạng
+              và độc đáo
             </p>
             <ul className="site-footer__social-networks">
               <li>
@@ -49,43 +53,43 @@ const Footer = () => {
                 <a href="/products">Sản phẩm</a>
               </li>
               <li>
-                <a href="#">Trạng thái mua hàng</a>
+                <a href="#">Trạng thái đơn thuê</a>
               </li>
               <li>
-                <a href="#">Giao hàng</a>
+                <a href="#">Mã khuyến mãi</a>
               </li>
               <li>
-                <a href="#">Vận chuyển</a>
+                <a href="#">Quy trình thuê và trả hàng</a>
               </li>
             </ul>
             <ul>
-              <li>Thông tin</li>
+              <li>Thông tin và liên hệ</li>
               <li>
-                <a href="#">Mã Khuyến mãi</a>
+                <a href="#">Về chúng tôi</a>
               </li>
               <li>
                 <a href="#">Tin tức</a>
               </li>
               <li>
-                <a href="#">Về chúng tôi</a>
+                <a href="#">Blog chia sẻ</a>
+              </li>
+              <li>
+                <a href="#">Liên hệ</a>
               </li>
             </ul>
             <ul>
-              <li>Hỗ trợ</li>
+              <li>Điều khoản và chính sách</li>
               <li>
-                <a href="#">Chính sách điều khoản</a>
+                <a href="#">Chính sách bảo mật</a>
               </li>
               <li>
-                <a href="#">Chính sách bảo mật </a>
+                <a href="#">Chính sách cho thuê</a>
               </li>
               <li>
-                <a href="#">Chính sách trả hàng</a>
+                <a href="#">Chính sách xử lý hư hỏng</a>
               </li>
               <li>
-                <a href="#">Chính sách hư hỏng</a>
-              </li>
-              <li>
-                <a href="#">Liên hệ </a>
+                <a href="#">FAQ</a>
               </li>
             </ul>
           </div>

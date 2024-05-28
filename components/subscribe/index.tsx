@@ -35,7 +35,11 @@ const Subscribe = () => {
 
           <Form methods={methods} onSubmit={onSubmit}>
             <FormRow className="!gap-2">
-              <TextInput className="w-[300px]" name="email" required />
+              <TextInput
+                className="w-[300px] bg-color-white !rounded-none"
+                name="email"
+                required
+              />
               <Button
                 type="submit"
                 className="bg-color-orange text-color-black"

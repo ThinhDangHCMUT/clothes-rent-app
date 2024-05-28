@@ -14,9 +14,22 @@ import { Button } from "@components/ui/button";
 import { loadState } from "@utils/localstorage";
 import { USER_INFO } from "constants/index";
 import { Avatar, AvatarFallback, AvatarImage } from "@components/ui/avatar";
-import { LogOutIcon } from "lucide-react";
 import { signOutFirebase } from "@utils/auth";
 import { twMerge } from "tailwind-merge";
+import { IoIosInformationCircleOutline } from "react-icons/io";
+import { CiShoppingCart } from "react-icons/ci";
+import { CiSettings } from "react-icons/ci";
+import { IoIosLogOut } from "react-icons/io";
+import { BiMessageDetail } from "react-icons/bi";
+import { MdOutlineFeedback } from "react-icons/md";
+import {
+  DropdownMenu,
+  DropdownMenuCheckboxItem,
+  DropdownMenuContent,
+  DropdownMenuLabel,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@components/ui/dropdown";
 
 type HeaderType = {
   isErrorPage?: Boolean;
@@ -77,14 +90,19 @@ const Header = ({ isErrorPage }: HeaderType) => {
   useOnClickOutside(searchRef, closeSearch);
 
   return (
-    <header className={clsx("site-header", !onTop ? "site-header--fixed" : "")}>
+    <header
+      className={clsx("site-header !h-20", !onTop ? "site-header--fixed" : "")}
+    >
       <div className="container">
         <Link href="/">
           <a>
-            <h1 className="site-logo">
-              <Logo />
-              <p className="lg:block hidden">Costume Rental Service</p>
-            </h1>
+            {/* <Logo />
+              <p className="lg:block hidden text-xl">Costume Rental Service</p> */}
+            <img
+              src="https://i.ibb.co/JmLjZ2R/439581460-1254376502638315-3938044933412619131-n-removebg-preview.png"
+              className="h-12"
+              alt=""
+            />
           </a>
         </Link>
         <nav
@@ -92,10 +110,14 @@ const Header = ({ isErrorPage }: HeaderType) => {
           className={`site-nav ${menuOpen ? "site-nav--open" : ""}`}
         >
           <Link href="/products">
-            <a>Sản phẩm</a>
+            <a className="site-nav-a">Sản phẩm</a>
           </Link>
-          <a href="#">Tin tức</a>
-          <a href="#">Về chúng tôi</a>
+          <a className="site-nav-a" href="#">
+            Tin tức
+          </a>
+          <a className="site-nav-a" href="#">
+            Về chúng tôi
+          </a>
           <button className="site-nav__btn">
             <p>Account</p>
           </button>
@@ -146,18 +168,44 @@ const Header = ({ isErrorPage }: HeaderType) => {
                 !onTop && "text-color-black"
               )}
             >
-              <Avatar>
-                <AvatarImage src={userInfo.avatar} />
-                <AvatarFallback>CN</AvatarFallback>
-              </Avatar>
-              <LogOutIcon
-                className="hover:opacity-70 cursor-pointer"
-                onClick={async () => {
-                  localStorage.removeItem(USER_INFO);
-                  await signOutFirebase();
-                  router.push("/login");
-                }}
-              />
+              <DropdownMenu>
+                <DropdownMenuTrigger asChild className="!z-50">
+                  <Avatar>
+                    <AvatarImage src={userInfo.avatar} />
+                    <AvatarFallback>CN</AvatarFallback>
+                  </Avatar>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent className="w-56 bg-color-white !z-50">
+                  <DropdownMenuLabel>{userInfo.userName}</DropdownMenuLabel>
+                  <DropdownMenuSeparator />
+                  <DropdownMenuCheckboxItem>
+                    <IoIosInformationCircleOutline /> Thông tin người dùng
+                  </DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem>
+                    <CiShoppingCart /> Đơn hàng của tôi
+                  </DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem>
+                    <CiSettings />
+                    Cài đặt
+                  </DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem>
+                    <BiMessageDetail /> Điều khoản và hỗ trợ
+                  </DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem>
+                    <MdOutlineFeedback />
+                    Góp ý
+                  </DropdownMenuCheckboxItem>
+                  <DropdownMenuCheckboxItem
+                    onClick={async () => {
+                      localStorage.removeItem(USER_INFO);
+                      await signOutFirebase();
+                      router.push("/login");
+                    }}
+                  >
+                    <IoIosLogOut /> Đăng xuất
+                  </DropdownMenuCheckboxItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
             </div>
           ) : (
             <>

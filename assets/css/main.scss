@@ -247,7 +247,7 @@ h1,h2,h3,h4,h5 {
 
 .site-logo {
   display: flex;
-  font-size: 14px;
+  font-size: 15px;
   align-items: center;
   @include breakpoint(phone) {
     font-size: 16px;
@@ -345,6 +345,14 @@ h1,h2,h3,h4,h5 {
     }
   }
   .site-nav {
+    a{
+      font-weight: 500;
+      font-size: 16px !important
+    }
+    a:hover{
+      text-decoration: underline;
+      font-weight: 700;
+    }
     top: 0;
     right: -250px;
     width: 250px;
@@ -625,8 +633,9 @@ h1,h2,h3,h4,h5 {
         }
         .data-item__content {
           h4 {
-            font-size: 14px;
+            font-size: 16px;
             margin-bottom: 7px;
+            font-weight: 700;
           }
           p {
             font-size: 12px;
@@ -1067,8 +1076,8 @@ h1,h2,h3,h4,h5 {
       margin-bottom: 93px;
     }
     h4 {
-      font-size: 23px;
-      font-weight: 300;
+      font-size: 25px;
+      font-weight: 600;
       text-align: center;
       @include breakpoint(phone) {
         font-size: 29px;

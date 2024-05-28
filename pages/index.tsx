@@ -69,10 +69,23 @@ const StepsList = [
   {
     header: "Bước 1",
     title: "Lựa chọn trang phục",
+    icon: "https://cdn-icons-png.flaticon.com/512/3222/3222664.png",
   },
-  { header: "Bước 2", title: "Thiết lập giao hàng và thanh toán" },
-  { header: "Bước 3", title: "Nhận hàng và thanh toán" },
-  { header: "Bước 4", title: "“Sự kiện ơi, tớ đến đây!”" },
+  {
+    header: "Bước 2",
+    title: "Thiết lập giao hàng và thanh toán",
+    icon: "https://cdn-icons-png.flaticon.com/512/3624/3624080.png",
+  },
+  {
+    header: "Bước 3",
+    title: "Nhận hàng và thanh toán",
+    icon: "https://cdn-icons-png.flaticon.com/512/7615/7615749.png",
+  },
+  {
+    header: "Bước 4",
+    title: "“Sự kiện ơi, tớ đến đây!”",
+    icon: "https://cdn-icons-png.flaticon.com/512/5637/5637272.png",
+  },
 ];
 
 const schema = yup
@@ -161,7 +174,7 @@ const IndexPage = () => {
               </div>
               <CardHeader className="px-3 py-0">
                 <CardTitle className="text-center text-color-black text-xl flex justify-center items-center gap-3">
-                  <p className="">Your Email</p>
+                  <p className="">Email của bạn</p>
                 </CardTitle>
                 <CardDescription>
                   <p className="text-center text-sm">
@@ -192,7 +205,7 @@ const IndexPage = () => {
         <div className="section w-full flex justify-center mt-20 flex-col">
           {" "}
           <header className="section__intro">
-            <h4>Dịch vụ sản phẩm thịnh hành, độc đáo</h4>
+            <h4>“Trang phục đa dạng chủ đề sự kiện”</h4>
           </header>
           <Carousel
             plugins={[
@@ -216,7 +229,10 @@ const IndexPage = () => {
                     <h3 className="text-color-white bg-color-black p-2 bg-opacity-25 w-full font-semibold lg:text-3xl text-xl">
                       {_.name}
                     </h3>
-                    <a href="#" className="btn btn--rounded w-fit">
+                    <a
+                      href="#"
+                      className="btn btn--rounded w-fit !bg-color-orange-light !capitalize"
+                    >
                       Khám phá
                     </a>
                   </div>
@@ -236,10 +252,10 @@ const IndexPage = () => {
 
             <ul className="shop-data-items">
               {WhyChoseMeList.map((_) => (
-                <li>
+                <li className="flex flex-col items-center">
                   <i className={_.icon}></i>
                   <div className="data-item__content">
-                    <h4>{_.title}</h4>
+                    <h4 className="text-lg font-semibold">{_.title}</h4>
                   </div>
                 </li>
               ))}
@@ -274,7 +290,8 @@ const IndexPage = () => {
                           </CardTitle>
                         </CardHeader>
                         <CardContent className="flex flex-col h-28 items-center justify-center p-0">
-                          <div className="bg-color-orange bg-opacity-15 p-3 h-full flex items-center justify-center w-full font-semibold text-center">
+                          <div className="bg-color-orange flex-col bg-opacity-15 p-3 h-full flex items-center justify-center w-full font-semibold text-center gap-2">
+                            <img src={_.icon} className="w-14" alt="" />
                             <p className="">{_.title}</p>
                           </div>
                         </CardContent>

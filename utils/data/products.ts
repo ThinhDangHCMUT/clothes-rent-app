@@ -2,11 +2,11 @@ export const products = [
   {
     id: "1",
     name: "T-Shirt Summer Vibes",
-    price: 119.99,
+    price: 300000,
     discount: 30,
     quantityAvailable: 2,
     category: "T-shirt",
-    currentPrice: 89.99,
+    currentPrice: 200000,
     sizes: ["s", "m"],
     colors: ["#000", "6F3E18", "#D4BE8D", "#FFF"],
     images: ["/images/products/product-1.jpg"],
@@ -63,7 +63,7 @@ export const products = [
   {
     id: "2",
     name: "T-Shirt Summer Vibes",
-    price: 119.99,
+    price: 200000,
     quantityAvailable: 2,
     category: "T-shirt",
     currentPrice: 89.99,
@@ -123,7 +123,7 @@ export const products = [
   {
     id: "3",
     name: "T-Shirt Summer Vibes",
-    price: 119.99,
+    price: 350000,
     quantityAvailable: 2,
     category: "T-shirt",
     currentPrice: 89.99,
@@ -183,7 +183,8 @@ export const products = [
   {
     id: "4",
     name: "T-Shirt Summer Vibes",
-    price: 119.99,
+    price: 230000,
+    discount: 12,
     quantityAvailable: 2,
     category: "T-shirt",
     currentPrice: 89.99,
@@ -243,7 +244,8 @@ export const products = [
   {
     id: "5",
     name: "T-Shirt Summer Vibes",
-    price: 119.99,
+    price: 340000,
+    discount: 15,
     quantityAvailable: 2,
     category: "T-shirt",
     currentPrice: 89.99,
@@ -303,7 +305,7 @@ export const products = [
   {
     id: "6",
     name: "T-Shirt Summer Vibes",
-    price: 119.99,
+    price: 2300000,
     discount: 30,
     quantityAvailable: 2,
     category: "T-shirt",
@@ -364,7 +366,7 @@ export const products = [
   {
     id: "7",
     name: "Jacket",
-    price: 119.99,
+    price: 300000,
     discount: 30,
     quantityAvailable: 2,
     category: "T-shirt",
@@ -425,8 +427,8 @@ export const products = [
   {
     id: "8",
     name: "Bomber",
-    price: 119.99,
-    discount: 30,
+    price: 340000,
+    discount: 12,
     quantityAvailable: 2,
     category: "T-shirt",
     currentPrice: 89.99,
