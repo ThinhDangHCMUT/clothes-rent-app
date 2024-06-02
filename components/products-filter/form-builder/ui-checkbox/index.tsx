@@ -24,7 +24,7 @@ export default function CheckboxInput({
     <div
       className={clsx(
         !!className && className,
-        "w-full flex items-baseline gap-2"
+        "w-full flex items-baseline gap-2 justify-between"
       )}
     >
       <div>{title}</div>

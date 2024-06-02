@@ -4,8 +4,6 @@ import {
   signInWithEmailAndPassword,
   signInWithPopup,
   signOut,
-  sendEmailVerification,
-  sendPasswordResetEmail,
   FacebookAuthProvider,
   UserCredential,
 } from "firebase/auth";

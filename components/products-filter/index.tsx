@@ -1,7 +1,6 @@
 import { useState } from "react";
 import Checkbox from "./form-builder/checkbox";
 import CheckboxColor from "./form-builder/checkbox-color";
-import Slider from "rc-slider";
 
 // data
 import productsTypes from "./../../utils/data/products-types";
@@ -9,9 +8,8 @@ import productsColors from "./../../utils/data/products-colors";
 import productsSizes from "./../../utils/data/products-sizes";
 import { FormProvider, useForm } from "react-hook-form";
 import CheckboxInput from "./form-builder/ui-checkbox";
-
-const { createSliderWithTooltip } = Slider;
-const Range = createSliderWithTooltip(Slider.Range);
+import { Slider } from "@components/ui/slider";
+import { RadioGroup, RadioGroupItem } from "@components/ui/radio";
 
 const ProductsFilter = () => {
   const [filtersOpen, setFiltersOpen] = useState(false);
@@ -38,7 +36,7 @@ const ProductsFilter = () => {
             filtersOpen ? "products-filter__menu-btn--active" : ""
           }`}
         >
-          Add Filter <i className="icon-down-open"></i>
+          Lọc <i className="icon-down-open"></i>
         </button>
 
         <div
@@ -46,8 +44,23 @@ const ProductsFilter = () => {
             filtersOpen ? "products-filter__wrapper--open" : ""
           }`}
         >
+          {/* <button
+            type="button"
+            className="mb-3 !border text-color-black bg-color-orange-light w-fit px-3 py-1 text-base hover:opacity-70"
+          >
+            Apply
+          </button> */}
           <div className="products-filter__block">
-            <button type="button">Product type</button>
+            <button type="button">Chủ đề</button>
+            <div className="products-filter__block__content space-y-3 underline cursor-pointer">
+              <p className="cursor-pointer">Váy dạ hội</p>
+              <p className="cursor-pointer">Đầm</p>
+              <p className="cursor-pointer">Vest Nam</p>
+              <p className="cursor-pointer">Áo dài</p>
+            </div>
+          </div>
+          {/* <div className="products-filter__block">
+            <button type="button"></button>
             <div className="products-filter__block__content space-y-3">
               {productsTypes.map((type) => (
                 <CheckboxInput
@@ -58,31 +71,50 @@ const ProductsFilter = () => {
                 />
               ))}
             </div>
-          </div>
+          </div> */}
 
           <div className="products-filter__block">
             <button type="button">Price</button>
-            <div className="products-filter__block__content">
-              {/* <Range
-                min={0}
-                max={20}
-                defaultValue={[3, 10]}
-                tipFormatter={(value) => `${value}%`}
-              /> */}
+            <div className="products-filter__block__content flex">
+              <Slider
+                onValueChange={(value) => {
+                  console.log(value);
+                }}
+                defaultValue={[50]}
+                max={1000000}
+                min={100000}
+                step={50000}
+                suppressHydrationWarning
+              />
+            </div>
+          </div>
+          <div className="products-filter__block">
+            <button type="button">Giới tính</button>
+            <div className="products-filter__block__content space-y-3">
+              <RadioGroup defaultValue="comfortable">
+                <div className="flex items-center space-x-2 gap-2">
+                  <RadioGroupItem value="default" id="r1" />
+                  Nam
+                </div>
+                <div className="flex items-center space-x-2 gap-2">
+                  <RadioGroupItem value="comfortable" id="r2" />
+                  Nữ
+                </div>
+              </RadioGroup>
             </div>
           </div>
 
           <div className="products-filter__block">
             <button type="button">Size</button>
-            <div className="products-filter__block__content checkbox-square-wrapper">
-              {/* {productsSizes.map((type) => (
-                <Checkbox
-                  type="square"
+            <div className="products-filter__block__content space-y-3">
+              {productsSizes.map((type) => (
+                <CheckboxInput
+                  className="w-1/3"
                   key={type.id}
-                  name="product-size"
-                  label={type.label}
+                  name={`product-size.${type.value}`}
+                  title={type.name}
                 />
-              ))} */}
+              ))}
             </div>
           </div>
 
@@ -90,24 +122,17 @@ const ProductsFilter = () => {
             <button type="button">Color</button>
             <div className="products-filter__block__content">
               <div className="checkbox-color-wrapper">
-                {/* {productsColors.map((type) => (
+                {productsColors.map((type) => (
                   <CheckboxColor
                     key={type.id}
                     valueName={type.color}
                     name="product-color"
                     color={type.color}
                   />
-                ))} */}
+                ))}
               </div>
             </div>
           </div>
-
-          <button
-            type="submit"
-            className="btn btn-submit btn--rounded btn--yellow"
-          >
-            Apply
-          </button>
         </div>
       </form>
     </FormProvider>

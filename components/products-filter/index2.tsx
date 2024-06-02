@@ -79,7 +79,7 @@ const ProductsFilter = () => {
                 <CheckboxInput
                   key={size.id}
                   name={`product-size.${size.value}`}
-                  title={size.label}
+                  title={size?.name || ""}
                 />
               ))}
             </div>

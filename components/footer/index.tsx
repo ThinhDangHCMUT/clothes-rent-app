@@ -98,7 +98,7 @@ const Footer = () => {
 
       <div className="site-footer__bottom">
         <div className="container">
-          <p>DESIGN BY CYBERITY. ALL RIGHTS RESERVED.</p>
+          <p>© 2024 DESIGN BY CYBERITY. ALL RIGHTS RESERVED.</p>
         </div>
       </div>
     </footer>

@@ -2270,7 +2270,7 @@ h5 {
 
 @media (min-width: 767px) {
   .products-list .product-item {
-    margin-right: 33px;
+    margin-right: 10px;
     margin-bottom: 55px;
     width: calc(100% / 3 - 33px);
   }
@@ -2278,7 +2278,7 @@ h5 {
 
 @media (min-width: 1024px) {
   .products-list .product-item {
-    margin-right: 63px;
+    margin-right: 30px;
     margin-bottom: 85px;
     width: calc(100% / 3 - 63px);
   }

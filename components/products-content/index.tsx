@@ -7,9 +7,7 @@ const ProductsContent = () => {
   return (
     <section className="products-content">
       <div className="products-content__intro">
-        <h2>
-          Men's Tops <span>(133)</span>
-        </h2>
+        <h2>Danh sách sản phẩm</h2>
         <button
           type="button"
           onClick={() => setOrderProductsOpen(!orderProductsOpen)}
@@ -23,18 +21,25 @@ const ProductsContent = () => {
           }`}
         >
           <div className="products__filter__select">
-            <h4>Show products: </h4>
+            <h4>Phân loại: </h4>
             <div className="select-wrapper">
               <select>
-                <option>Popular</option>
+                <option>Mới</option>
+                <option>Cũ</option>
+                <option>Thuê nhiều</option>
+                <option>Có giảm giá</option>
+                <option>Tất cả</option>
               </select>
             </div>
           </div>
           <div className="products__filter__select">
-            <h4>Sort by: </h4>
+            <h4>Thứ tự: </h4>
             <div className="select-wrapper">
               <select>
-                <option>Popular</option>
+                <option>Phổ biến</option>
+                <option>Rẻ nhất</option>
+                <option>Đắt nhất</option>
+                <option>Đánh giá tốt nhất</option>
               </select>
             </div>
           </div>

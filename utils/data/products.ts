@@ -11,7 +11,7 @@ export const products = [
     colors: ["#000", "6F3E18", "#D4BE8D", "#FFF"],
     images: ["/images/products/product-1.jpg"],
     punctuation: {
-      countOpinions: 81,
+      countOpinions: 3,
       punctuation: 4.5,
       votes: [
         {
@@ -71,7 +71,7 @@ export const products = [
     colors: ["#000", "6F3E18", "#D4BE8D", "#FFF"],
     images: ["/images/products/product-2.jpg"],
     punctuation: {
-      countOpinions: 81,
+      countOpinions: 3,
       punctuation: 4.5,
       votes: [
         {
@@ -131,7 +131,7 @@ export const products = [
     colors: ["#000", "6F3E18", "#D4BE8D", "#FFF"],
     images: ["/images/products/product-3.jpg"],
     punctuation: {
-      countOpinions: 81,
+      countOpinions: 3,
       punctuation: 4.5,
       votes: [
         {
@@ -192,7 +192,7 @@ export const products = [
     colors: ["#000", "6F3E18", "#D4BE8D", "#FFF"],
     images: ["/images/products/product-4.jpg"],
     punctuation: {
-      countOpinions: 81,
+      countOpinions: 3,
       punctuation: 4.5,
       votes: [
         {
@@ -253,7 +253,7 @@ export const products = [
     colors: ["#000", "6F3E18", "#D4BE8D", "#FFF"],
     images: ["/images/products/product-5.jpg"],
     punctuation: {
-      countOpinions: 81,
+      countOpinions: 3,
       punctuation: 4.5,
       votes: [
         {
@@ -314,7 +314,7 @@ export const products = [
     colors: ["#000", "6F3E18", "#D4BE8D", "#FFF"],
     images: ["/images/products/product-6.jpg"],
     punctuation: {
-      countOpinions: 81,
+      countOpinions: 3,
       punctuation: 4.5,
       votes: [
         {
@@ -375,7 +375,7 @@ export const products = [
     colors: ["#000", "6F3E18", "#D4BE8D", "#FFF"],
     images: ["/images/products/product-6.jpg"],
     punctuation: {
-      countOpinions: 81,
+      countOpinions: 3,
       punctuation: 4.5,
       votes: [
         {
@@ -436,7 +436,7 @@ export const products = [
     colors: ["#000", "6F3E18", "#D4BE8D", "#FFF"],
     images: ["/images/products/product-6.jpg"],
     punctuation: {
-      countOpinions: 81,
+      countOpinions: 3,
       punctuation: 4.5,
       votes: [
         {

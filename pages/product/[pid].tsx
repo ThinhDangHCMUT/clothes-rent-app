@@ -30,6 +30,24 @@ export const getServerSideProps: GetServerSideProps = async ({ query }) => {
   };
 };
 
+export const policyProduct = [
+  {
+    id: 1,
+    name: "Quy trình thuê và trả hàng ",
+    icon: "https://cdn-icons-png.flaticon.com/512/9496/9496238.png",
+  },
+  {
+    id: 2,
+    name: "Chính sách phạt trễ hạn",
+    icon: "https://cdn-icons-png.flaticon.com/512/9644/9644323.png",
+  },
+  {
+    id: 3,
+    name: "Liên hệ hỗ trợ ",
+    icon: "https://cdn-icons-png.flaticon.com/512/1067/1067566.png",
+  },
+];
+
 const Product = ({ product }: ProductPageType) => {
   const [showBlock, setShowBlock] = useState("description");
 
@@ -40,7 +58,9 @@ const Product = ({ product }: ProductPageType) => {
       <section className="product-single">
         <div className="container">
           <div className="product-single__content">
-            <Gallery images={product.images} />
+            <div className="gap-5 flex flex-col md:mb-0 mb-10 ">
+              <Gallery images={product.images} />
+            </div>
             <Content product={product} />
           </div>
 
