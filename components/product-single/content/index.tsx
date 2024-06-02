@@ -43,7 +43,7 @@ const Content = ({ product }: ProductContent) => {
       id: product.id,
       name: product.name,
       thumb: product.images ? product.images[0] : "",
-      price: product.currentPrice,
+      price: product.price * (1 - (product.discount! || 0) / 100),
       count: count,
       color: color,
       size: itemSize,
@@ -73,7 +73,7 @@ const Content = ({ product }: ProductContent) => {
         </div>
 
         <div className="mt-5 text-2xl font-semibold">
-          <h4>{product.price * (1 - +product?.discount! / 100 || 0)} đ/ngày</h4>
+          <h4>{product.price * (1 - +product?.discount! / 100)} đ/ngày</h4>
           {product.discount && (
             <span className="line-through text-base">
               {product.price} đ/ngày

@@ -1,19 +1,20 @@
-import { useSelector } from 'react-redux';
-import CheckoutStatus from '../../components/checkout-status';
-import Item from './item';
-import { RootState } from 'store';
+import { useSelector } from "react-redux";
+import CheckoutStatus from "../../components/checkout-status";
+import Item from "./item";
+import { RootState } from "store";
+import Breadcrumb from "@components/breadcrumb";
 
 const ShoppingCart = () => {
-  const { cartItems } = useSelector((state: RootState)  => state.cart);
+  const { cartItems } = useSelector((state: RootState) => state.cart);
 
   const priceTotal = () => {
     let totalPrice = 0;
-    if(cartItems.length > 0) {
-      cartItems.map(item => totalPrice += item.price * item.count);
+    if (cartItems.length > 0) {
+      cartItems.map((item) => (totalPrice += item.price * item.count));
     }
 
     return totalPrice;
-  }
+  };
 
   return (
     <section className="cart">
@@ -24,20 +25,21 @@ const ShoppingCart = () => {
         </div>
 
         <div className="cart-list">
-          {cartItems.length > 0 &&
+          {cartItems.length > 0 && (
             <table>
               <tbody>
                 <tr>
-                  <th style={{textAlign: 'left'}}>Product</th>
-                  <th>Color</th>
-                  <th>Size</th>
-                  <th>Ammount</th>
+                  <th style={{ textAlign: "left" }}>Sản phẩm</th>
+                  <th>Kích thước</th>
+                  <th>Số lượng</th>
+                  <th>Ngày thuê</th>
+                  <th>Ngày trả</th>
                   <th>Price</th>
-                  <th></th>
+                  <th>Action</th>
                 </tr>
 
-                {cartItems.map(item => (
-                  <Item 
+                {cartItems.map((item) => (
+                  <Item
                     key={item.id}
                     id={item.id}
                     thumb={item.thumb}
@@ -49,27 +51,34 @@ const ShoppingCart = () => {
                   />
                 ))}
               </tbody>
-            </table> 
-          } 
-          
-          {cartItems.length === 0 && 
-            <p>Nothing in the cart</p>
-          }
+            </table>
+          )}
+
+          {cartItems.length === 0 && <p>Nothing in the cart</p>}
         </div>
-      
+
         <div className="cart-actions">
-          <a href="/products" className="cart__btn-back"><i className="icon-left"></i> Continue Shopping</a>
-          <input type="text" placeholder="Promo Code" className="cart__promo-code" />
+          <a href="/products" className="cart__btn-back invisible">
+            <i className="icon-left"></i> Continue Shopping
+          </a>
+          <input
+            type="text"
+            placeholder="Promo Code"
+            className="cart__promo-code"
+          />
 
           <div className="cart-actions__items-wrapper">
-            <p className="cart-actions__total">Total cost <strong>${priceTotal().toFixed(2)}</strong></p>
-            <a href="/cart/checkout" className="btn btn--rounded btn--yellow">Checkout</a>
+            <p className="cart-actions__total">
+              Total cost <strong>{priceTotal().toFixed(2)} đ</strong>
+            </p>
+            <a href="/cart/checkout" className="btn btn--rounded btn--yellow">
+              Checkout
+            </a>
           </div>
         </div>
       </div>
     </section>
-  )
+  );
 };
 
-  
-export default ShoppingCart
+export default ShoppingCart;

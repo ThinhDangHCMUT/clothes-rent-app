@@ -1,30 +1,30 @@
-import axios from 'axios';
-import CryptoJS from 'crypto-js';
-import moment from 'moment';
-import { configZLP } from '../config';
+import axios from "axios";
+import CryptoJS from "crypto-js";
+import moment from "moment";
+import { configZLP } from "../config";
 
 export default async function handler(req, res) {
-  if (req.method !== 'POST') {
-    res.setHeader('Allow', 'POST');
-    res.status(405).end('Method Not Allowed');
+  if (req.method !== "POST") {
+    res.setHeader("Allow", "POST");
+    res.status(405).end("Method Not Allowed");
     return;
   }
 
   try {
-    const embed_data = { zlppaymentid: 'P271021' };
+    const embed_data = { zlppaymentid: "P271021" };
     const items = [{}]; // todo: collect items from Cart page
     const transID = Math.floor(Math.random() * 1000000);
-    const appTransID = `${moment().format('YYMMDD')}_${transID}`;
+    const appTransID = `${moment().format("YYMMDD")}_${transID}`;
     const order = {
       app_id: configZLP.app_id,
       app_trans_id: appTransID,
-      app_user: 'user123',
+      app_user: "user123",
       app_time: Date.now(), // milliseconds
       item: JSON.stringify(items),
       embed_data: JSON.stringify(embed_data),
-      amount: 1,
+      amount: req.body.price || 1,
       description: `Payment for the order #${transID}`,
-      bank_code: 'zalopayapp',
+      bank_code: "zalopayapp",
       callback_url: configZLP.callback_url,
     };
 
@@ -36,11 +36,11 @@ export default async function handler(req, res) {
       order.app_time,
       order.embed_data,
       order.item,
-    ].join('|');
+    ].join("|");
     order.mac = CryptoJS.HmacSHA256(data, configZLP.key1).toString();
 
     axios
-      .post(configZLP.endpoint + 'create', null, { params: order })
+      .post(configZLP.endpoint + "create", null, { params: order })
       .then((result) => {
         res.status(200).json({
           appTransID: appTransID,

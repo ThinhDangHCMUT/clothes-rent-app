@@ -1,9 +1,10 @@
-import Layout from '../../layouts/Main';
-import { useSelector } from 'react-redux';
-import CheckoutStatus from '../../components/checkout-status';
-import CheckoutItems from '../../components/checkout/items';
-import { RootState } from 'store';
-import { useRouter } from 'next/router';
+import Layout from "../../layouts/Main";
+import { useSelector } from "react-redux";
+import CheckoutStatus from "../../components/checkout-status";
+import CheckoutItems from "../../components/checkout/items";
+import { RootState } from "store";
+import { useRouter } from "next/router";
+import Breadcrumb from "@components/breadcrumb";
 
 const CheckoutPage = () => {
   const router = useRouter();
@@ -19,6 +20,7 @@ const CheckoutPage = () => {
 
   return (
     <Layout>
+      <Breadcrumb cart />
       <section className="cart">
         <div className="container">
           <div className="cart__intro">
@@ -38,83 +40,57 @@ const CheckoutPage = () => {
               <div className="block">
                 <h3 className="block__title">Shipping information</h3>
                 <form className="form">
-                  <div className="form__input-row form__input-row--two">
+                  <div className="form__input-row">
                     <div className="form__col">
                       <input
                         className="form__input form__input--sm"
-                        type="text"
+                        type="email"
                         placeholder="Email"
                       />
                     </div>
-
+                  </div>
+                  <div className="form__input-row">
                     <div className="form__col">
                       <input
                         className="form__input form__input--sm"
                         type="text"
-                        placeholder="Address"
+                        placeholder="Địa chỉ"
                       />
                     </div>
                   </div>
 
-                  <div className="form__input-row form__input-row--two">
+                  <div className="form__input-row">
                     <div className="form__col">
                       <input
                         className="form__input form__input--sm"
                         type="text"
-                        placeholder="First name"
-                      />
-                    </div>
-
-                    <div className="form__col">
-                      <input
-                        className="form__input form__input--sm"
-                        type="text"
-                        placeholder="City"
+                        placeholder="Họ và tên"
                       />
                     </div>
                   </div>
-
-                  <div className="form__input-row form__input-row--two">
+                  <div className="form__input-row">
                     <div className="form__col">
                       <input
                         className="form__input form__input--sm"
-                        type="text"
-                        placeholder="Last name"
-                      />
-                    </div>
-
-                    <div className="form__col">
-                      <input
-                        className="form__input form__input--sm"
-                        type="text"
-                        placeholder="Postal code / ZIP"
+                        type="number"
+                        placeholder="SĐT"
                       />
                     </div>
                   </div>
-
-                  <div className="form__input-row form__input-row--two">
+                  <div className="form__input-row">
                     <div className="form__col">
                       <input
                         className="form__input form__input--sm"
-                        type="text"
-                        placeholder="Phone number"
+                        type="number"
+                        placeholder="CCCD (không bắt buộc)"
                       />
-                    </div>
-
-                    <div className="form__col">
-                      <div className="select-wrapper select-form">
-                        <select>
-                          <option>Country</option>
-                          <option value="Argentina">Argentina</option>
-                        </select>
-                      </div>
                     </div>
                   </div>
                 </form>
               </div>
             </div>
 
-            <div className="checkout__col-4">
+            {/* <div className="checkout__col-4">
               <div className="block">
                 <h3 className="block__title">Payment method</h3>
                 <ul className="round-options round-options--three">
@@ -160,7 +136,7 @@ const CheckoutPage = () => {
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> */}
 
             <div className="checkout__col-2">
               <div className="block">
@@ -169,29 +145,33 @@ const CheckoutPage = () => {
 
                 <div className="checkout-total">
                   <p>Total cost</p>
-                  <h3>${priceTotal}</h3>
+                  <h3>{priceTotal} đ</h3>
                 </div>
               </div>
             </div>
           </div>
 
+          <div className="flex">
+            <button
+              type="button"
+              className="btn btn--rounded btn--yellow ml-auto"
+              onClick={() => {
+                router.push({
+                  pathname: "/cart/payment",
+                  query: {
+                    price: priceTotal,
+                  },
+                });
+              }}
+            >
+              Proceed to payment
+            </button>
+          </div>
           <div className="cart-actions cart-actions--checkout">
-            <a href="/cart" className="cart__btn-back">
+            {/* <a href="/cart" className="cart__btn-back">
               <i className="icon-left"></i> Back
-            </a>
-            <div className="cart-actions__items-wrapper">
-              <button type="button" className="btn btn--rounded btn--border">
-                Continue shopping
-              </button>
-              <button
-                type="button"
-                className="btn btn--rounded btn--yellow"
-                onClick={() => {
-                  router.push('/cart/payment');
-                }}>
-                Proceed to payment
-              </button>
-            </div>
+            </a> */}
+            <div className="cart-actions__items-wrapper"></div>
           </div>
         </div>
       </section>
