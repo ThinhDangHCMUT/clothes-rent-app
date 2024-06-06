@@ -49,6 +49,7 @@ export const policyProduct = [
 ];
 
 const Product = ({ product }: ProductPageType) => {
+  console.log("product: ", product);
   const [showBlock, setShowBlock] = useState("description");
 
   return (

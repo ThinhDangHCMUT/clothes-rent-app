@@ -30,19 +30,19 @@ import { CircleX } from "lucide-react";
 const CategoryList = [
   {
     name: "Vest, sơ mi nam",
-    image: "/images/featured-1.jpg",
+    image: "/images/card/card-vest.jpg",
   },
   {
     name: "Đầm dạ hội nữ",
-    image: "/images/featured-2.jpg",
+    image: "/images/card/card-dress.jpeg",
   },
   {
     name: "Áo dài",
-    image: "/images/featured-3.jpg",
+    image: "/images/card/card-aodai.png",
   },
   {
     name: "Trang phục Tót nghiệp",
-    image: "/images/featured-3.jpg",
+    image: "/images/card/card-graduation.jpg",
   },
 ];
 
@@ -224,7 +224,10 @@ const IndexPage = () => {
                 <CarouselItem key={index} className="md:basis-1/2 lg:basis-1/3">
                   <div
                     className="p-5 w-full h-96 bg-cover bg-center bg-no-repeat flex flex-col justify-end gap-2"
-                    style={{ backgroundImage: `url(${_.image})` }}
+                    style={{
+                      backgroundImage: `url(${_.image})`,
+                      backgroundSize: "contain",
+                    }}
                   >
                     <h3 className="text-color-white bg-color-black p-2 bg-opacity-25 w-full font-semibold lg:text-3xl text-xl">
                       {_.name}

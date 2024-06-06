@@ -26,7 +26,9 @@ const Subscribe = () => {
     <section className="subscribe">
       <div className="container">
         <div
-          style={{ backgroundImage: "url(/images/subscribe.jpg)" }}
+          style={{
+            backgroundImage: "url(/images/card/card-picnic-concept.jpg)",
+          }}
           className="subscribe__content"
         >
           <h4>

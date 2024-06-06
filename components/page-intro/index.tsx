@@ -11,7 +11,9 @@ const PageIntro = () => {
         <SwiperSlide>
           <div
             className="page-intro__slide"
-            style={{ backgroundImage: "url('/images/slide-1.jpg')" }}
+            style={{
+              backgroundImage: "url('/images/card/card-baocap-concept.jpg')",
+            }}
           >
             <div className="container">
               <div className="page-intro__slide__content">
@@ -28,7 +30,9 @@ const PageIntro = () => {
         <SwiperSlide>
           <div
             className="page-intro__slide"
-            style={{ backgroundImage: "url('/images/slide-2.jpg')" }}
+            style={{
+              backgroundImage: "url('/images/card/card-gamxua-concept.jpg')",
+            }}
           >
             <div className="container">
               <div className="page-intro__slide__content">
@@ -44,7 +48,9 @@ const PageIntro = () => {
         <SwiperSlide>
           <div
             className="page-intro__slide"
-            style={{ backgroundImage: "url('/images/slide-2.jpg')" }}
+            style={{
+              backgroundImage: "url('/images/card/card-picnic-concept.jpg')",
+            }}
           >
             <div className="container">
               <div className="page-intro__slide__content">

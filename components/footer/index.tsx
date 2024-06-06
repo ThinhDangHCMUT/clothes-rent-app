@@ -7,11 +7,7 @@ const Footer = () => {
         <div className="site-footer__top">
           <div className="site-footer__description">
             <h6>
-              <img
-                src="https://i.ibb.co/JmLjZ2R/439581460-1254376502638315-3938044933412619131-n-removebg-preview.png"
-                className="md:h-12 h-8"
-                alt=""
-              />
+              <img src="/images/logo.png" className="md:h-12 h-8" alt="" />
             </h6>
             <p>
               Dịch vụ cho thuê trang phục theo sự kiện với nhiều mẫu mã đa dạng
